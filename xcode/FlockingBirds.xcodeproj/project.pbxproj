@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,13 +12,13 @@
 		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
 		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		18ACA3B48F0243E4A2961243 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2545AECD36294515841D5155 /* CinderApp.icns */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		88FAA71C6E95412692EECE92 /* FlockingBirds_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = BAEE73DC53BD4F35A15F56D2 /* FlockingBirds_Prefix.pch */; };
-		18ACA3B48F0243E4A2961243 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2545AECD36294515841D5155 /* CinderApp.icns */; };
-		918A44658F0A46409B20A4D1 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 84BC62C6C32247BFA2FB98AA /* Resources.h */; };
 		6B44113631D5430D99DD2B94 /* FlockingBirdsApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BDFCE760144254A92FB98E /* FlockingBirdsApp.cpp */; };
+		8A691B36186765E8003A422A /* ThingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A691B34186765E8003A422A /* ThingController.cpp */; };
+		8A691B3918676850003A422A /* Thing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A691B3718676850003A422A /* Thing.cpp */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,17 +27,21 @@
 		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		08BDFCE760144254A92FB98E /* FlockingBirdsApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = FlockingBirdsApp.cpp; path = ../src/FlockingBirdsApp.cpp; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2545AECD36294515841D5155 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		55113AD9347B4A6DAEEED671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84BC62C6C32247BFA2FB98AA /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		8A691B34186765E8003A422A /* ThingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ThingController.cpp; path = ../src/Classes/ThingController.cpp; sourceTree = "<group>"; };
+		8A691B35186765E8003A422A /* ThingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThingController.h; path = ../src/Classes/ThingController.h; sourceTree = "<group>"; };
+		8A691B3718676850003A422A /* Thing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Thing.cpp; path = ../src/Classes/Thing.cpp; sourceTree = "<group>"; };
+		8A691B3818676850003A422A /* Thing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thing.h; path = ../src/Classes/Thing.h; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* FlockingBirds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlockingBirds.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		08BDFCE760144254A92FB98E /* FlockingBirdsApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/FlockingBirdsApp.cpp; sourceTree = "<group>"; name = FlockingBirdsApp.cpp; };
-		84BC62C6C32247BFA2FB98AA /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
-		2545AECD36294515841D5155 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
-		55113AD9347B4A6DAEEED671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
-		BAEE73DC53BD4F35A15F56D2 /* FlockingBirds_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = FlockingBirds_Prefix.pch; sourceTree = "<group>"; name = FlockingBirds_Prefix.pch; };
+		BAEE73DC53BD4F35A15F56D2 /* FlockingBirds_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = FlockingBirds_Prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				08BDFCE760144254A92FB98E /* FlockingBirdsApp.cpp */,
+				8A691B34186765E8003A422A /* ThingController.cpp */,
+				8A691B3718676850003A422A /* Thing.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -112,18 +125,13 @@
 			name = FlockingBirds;
 			sourceTree = "<group>";
 		};
-		01B97315FEAEA392516A2CEA /* Blocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Blocks;
-			sourceTree = "<group>";
-		};
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
 				84BC62C6C32247BFA2FB98AA /* Resources.h */,
 				BAEE73DC53BD4F35A15F56D2 /* FlockingBirds_Prefix.pch */,
+				8A691B35186765E8003A422A /* ThingController.h */,
+				8A691B3818676850003A422A /* Thing.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -172,6 +180,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FlockingBirds" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -207,6 +217,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A691B3918676850003A422A /* Thing.cpp in Sources */,
+				8A691B36186765E8003A422A /* ThingController.cpp in Sources */,
 				6B44113631D5430D99DD2B94 /* FlockingBirdsApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,24 +230,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FlockingBirds_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FlockingBirds_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
 				PRODUCT_NAME = FlockingBirds;
-				WRAPPER_EXTENSION = app;
 				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
@@ -257,19 +269,19 @@
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
 				PRODUCT_NAME = FlockingBirds;
 				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = app;
 				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = i386;
-				CINDER_PATH = "../../../cinder_master";
+				CINDER_PATH = ../../../cinder_master;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
@@ -282,11 +294,11 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = i386;
-				CINDER_PATH = "../../../cinder_master";
+				CINDER_PATH = ../../../cinder_master;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
