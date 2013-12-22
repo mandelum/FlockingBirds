@@ -6,7 +6,7 @@
 //
 //
 #pragma once
-#include <iostream>
+//#include <iostream>
 #include "cinder/Channel.h"
 #include "cinder/Vector.h"
 
@@ -25,5 +25,7 @@ public:
     float       mVel;
     
     float       mRadius;
+    
+    int         mOgon;
     
 };

@@ -16,18 +16,18 @@ using std::list;
 
 ThingController::ThingController()
 {
-
 }
 
-void update()
+void ThingController::update()
 {
+    
     for (list<Thing>::iterator p = mThings.begin(); p != mThings.end(); ++p) {
 		p->update();
     }
     
 }
 
-void draw()
+void ThingController::draw()
 {
     for( list<Thing>::iterator p = mThings.begin(); p != mThings.end(); ++p )
     {
@@ -36,7 +36,7 @@ void draw()
 
 }
 
-void addThings( int amt )
+void ThingController::addThings( int amt )
 {
     for( int i=0; i<amt; i++ )
     {
@@ -46,7 +46,7 @@ void addThings( int amt )
     }
 }
 
-void removeThings( int amt )
+void ThingController::removeThings( int amt )
 {
     for( int i=0; i<amt; i++ )
     {

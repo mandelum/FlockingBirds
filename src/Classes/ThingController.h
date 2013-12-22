@@ -6,9 +6,9 @@
 //
 //
 #pragma once
-#include <iostream>
-#include <list>
+//#include <iostream>
 #include "Thing.h"
+#include <list>
 
 class ThingController {
 public:

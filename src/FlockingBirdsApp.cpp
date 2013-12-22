@@ -32,7 +32,7 @@ void FlockingBirdsApp::setup()
 	Url url( "http://libcinder.org/media/tutorial/paris.jpg" );
     myImage = gl::Texture( loadImage( loadUrl( url ) ) );
     
-    mThingController.addThings(20);
+    mThingController.addThings( 50 );
 
 }
 
@@ -51,12 +51,11 @@ void FlockingBirdsApp::draw()
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ), true );
 
-    if( myImage )
+	myImage.enableAndBind();
     gl::draw( myImage, getWindowBounds() );
-    
-    float x = cos( getElapsedSeconds() ) * 100.0f;
-    float y = sin( getElapsedSeconds() ) * 100.0f;
-    gl::drawSolidCircle( Vec2f( x, y ) + getWindowSize() / 2, abs( y ) , 5);
+
+    glDisable( GL_TEXTURE_2D );
+	glColor3f( 1, 1, 1 );
     
     mThingController.draw();
 }
