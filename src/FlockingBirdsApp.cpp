@@ -4,6 +4,9 @@
 #include "cinder/gl/Texture.h"
 #include "ThingController.h"
 
+#define TOTAL_PARTICLES 4800
+#define RESOLUTION 10
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -32,7 +35,8 @@ void FlockingBirdsApp::setup()
 	Url url( "http://libcinder.org/media/tutorial/paris.jpg" );
     myImage = gl::Texture( loadImage( loadUrl( url ) ) );
     
-    mThingController.addThings( 50 );
+    mThingController = ThingController( RESOLUTION );
+    //mThingController.addThings( 50 );
 
 }
 
