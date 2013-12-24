@@ -9,6 +9,7 @@
 //#include <iostream>
 #include "cinder/Channel.h"
 #include "cinder/Vector.h"
+#include "cinder/Color.h"
 
 #include <vector>
 
@@ -17,7 +18,7 @@ public:
     Thing();
     Thing(ci::Vec2f);
     
-    void update();
+    void update( const ci::Channel32f &channel );
     void draw();
     
     ci::Vec2f   mLoc;
@@ -27,5 +28,6 @@ public:
     float       mRadius;
     
     int         mOgon;
+    ci::Color   mColor;
     
 };

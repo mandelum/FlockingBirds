@@ -15,12 +15,17 @@ class FlockingBirdsApp : public AppNative {
   public:
     void prepareSettings(Settings *settings);
 	void setup();
-	void mouseDown( MouseEvent event );	
+	void mouseDown( MouseEvent event );
+    void keyDown( KeyEvent event );
 	void update();
 	void draw();
-    gl::Texture myImage;
+    Channel32f mChannel;
+    gl::Texture	mTexture;
     
     ThingController mThingController;
+    
+    bool mDrawThings;
+    bool mDrawImage;
     
 };
 
@@ -33,10 +38,15 @@ void FlockingBirdsApp::prepareSettings(Settings *settings)
 void FlockingBirdsApp::setup()
 {
 	Url url( "http://libcinder.org/media/tutorial/paris.jpg" );
-    myImage = gl::Texture( loadImage( loadUrl( url ) ) );
+    
+    mChannel = Channel32f( loadImage( loadUrl( url ) ) );
+    mTexture = mChannel;
     
     mThingController = ThingController( RESOLUTION );
     //mThingController.addThings( 50 );
+    
+    mDrawThings = true;
+    mDrawImage  = false;
 
 }
 
@@ -47,7 +57,9 @@ void FlockingBirdsApp::mouseDown( MouseEvent event )
 
 void FlockingBirdsApp::update()
 {
-    mThingController.update();
+    if ( ! mChannel ) return;
+    
+    mThingController.update( mChannel );
 }
 
 void FlockingBirdsApp::draw()
@@ -55,13 +67,28 @@ void FlockingBirdsApp::draw()
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ), true );
 
-	myImage.enableAndBind();
-    gl::draw( myImage, getWindowBounds() );
+    if( mDrawImage ){
+		mTexture.enableAndBind();
+		gl::draw( mTexture, getWindowBounds() );
+	}
+	
+	if( mDrawThings ){
+		glDisable( GL_TEXTURE_2D );
+        glColor3f( 1, 1, 1 );
 
-    glDisable( GL_TEXTURE_2D );
-	glColor3f( 1, 1, 1 );
-    
-    mThingController.draw();
+		mThingController.draw();
+	}
+	
+ 
+}
+
+void FlockingBirdsApp::keyDown( KeyEvent event )
+{
+	if( event.getChar() == '1' ){
+		mDrawImage = ! mDrawImage;
+	} else if( event.getChar() == '2' ){
+		mDrawThings = ! mDrawThings;
+	}
 }
 
 CINDER_APP_NATIVE( FlockingBirdsApp, RendererGl )

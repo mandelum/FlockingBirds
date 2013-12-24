@@ -26,16 +26,18 @@ ThingController::ThingController( int res )
     
     for( int y=0; y<mYRes; y++ ) {
         for ( int x=0; x<mXRes; x++ ) {
-            addThings( ( x + 0.5f ) * 10.0f, ( y + 0.5f ) * 10.0f );
+            float xi = ( x + 0.5f ) * 10.0f;
+            float yi = ( y + 0.5f ) * 10.0f;
+            addThings( xi , yi );
         }
     }
 }
 
-void ThingController::update()
+void ThingController::update( const Channel32f &channel )
 {
     
     for (list<Thing>::iterator p = mThings.begin(); p != mThings.end(); ++p) {
-		p->update();
+		p->update( channel );
     }
     
 }
