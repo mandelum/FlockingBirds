@@ -33,11 +33,11 @@ ThingController::ThingController( int res )
     }
 }
 
-void ThingController::update( const Channel32f &channel )
+void ThingController::update( const Channel32f &channel, const Vec2i &mouseLoc )
 {
     
     for (list<Thing>::iterator p = mThings.begin(); p != mThings.end(); ++p) {
-		p->update( channel );
+		p->update( channel, mouseLoc );
     }
     
 }
@@ -78,3 +78,20 @@ void ThingController::removeThings( int amt )
     }
 
 }
+
+void ThingController::addVelocity()
+{
+    for( list<Thing>::iterator p = mThings.begin(); p != mThings.end(); ++p )
+        {
+		p->addVelocity();
+        }
+}
+
+void ThingController::removeVelocity()
+{
+    for( list<Thing>::iterator p = mThings.begin(); p != mThings.end(); ++p )
+        {
+		p->removeVelocity();
+        }
+}
+

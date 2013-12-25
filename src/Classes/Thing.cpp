@@ -34,6 +34,7 @@ Thing::Thing( Vec2f loc )
     //mRadius = sin( mLoc.x );
     //float xyOffset = sin( cos( sin( mLoc.y * 0.3183f ) + cos( mLoc.x * 0.3183f ) ) ) + 1.0f;
     //mRadius = xyOffset * xyOffset * 1.8f;
+    mScale  = 7.0f;
 
     
     //mOgon   = Rand::randInt( 10 );
@@ -44,14 +45,19 @@ Thing::Thing( Vec2f loc )
     //app::console() << "mColor ="<< mColor <<std::endl;
     
 }
-void Thing::update( const Channel32f &channel )
+void Thing::update( const Channel32f &channel, const Vec2i &mouseLoc)
 {
     //float time = app::getElapsedSeconds();
     //float gray = channel.getValue( mLoc );
     //mColor = Color( gray, gray, gray );
-    mRadius = channel.getValue( mLoc ) * 7.0f;
     
     //mLoc += mDir * mVel;
+    mDirToCursor = mouseLoc - mLoc;
+    mDirToCursor.safeNormalize();
+    
+    mRadius = channel.getValue( mLoc ) * mScale;
+    
+
     
     mLoc = mLoc + (mDir * mVel);
     //mLoc.x += cos( app::getElapsedSeconds() ) * 2.0f;
@@ -61,10 +67,26 @@ void Thing::update( const Channel32f &channel )
 
 void Thing::draw()
 {
-
+    float arrowLength = 15.0f;
     gl::color( mColor );
     gl::drawSolidCircle( mLoc , mRadius, mOgon);
-
+    gl::color( Color(0.0f,0.0f,0.0f));
+    Vec3f p1( mLoc, 0.0f);
+    Vec3f p2( mLoc + mDirToCursor * arrowLength,0.0f);
+    gl::drawVector(p1, p2);
+    
+    
     //gl::drawSolidCircle(mLoc, mRadius);
     
+}
+
+void Thing::addVelocity()
+{
+    mVel = 0.5f;
+    mVel    = Rand::randFloat(2);
+
+}
+void Thing::removeVelocity()
+{
+    mVel = 0.0f;
 }

@@ -15,7 +15,13 @@ class FlockingBirdsApp : public AppNative {
   public:
     void prepareSettings(Settings *settings);
 	void setup();
+    
 	void mouseDown( MouseEvent event );
+    void mouseUp( MouseEvent event );
+    void mouseMove( MouseEvent event );
+    void mouseDrag( MouseEvent event );
+    Vec2i mMouseLoc;
+    
     void keyDown( KeyEvent event );
 	void update();
 	void draw();
@@ -26,6 +32,7 @@ class FlockingBirdsApp : public AppNative {
     
     bool mDrawThings;
     bool mDrawImage;
+    
     
 };
 
@@ -40,20 +47,8 @@ void FlockingBirdsApp::setup()
     
 	Url url( "http://libcinder.org/media/tutorial/paris.jpg" );
     
-    try {
-        std::string p = getOpenFilePath( "", ImageIo::getLoadExtensions() ).string();
-        if( ! p.empty() ) { // an empty string means the user canceled
-            
-            mChannel = Channel32f( loadImage( p ) );
-            mTexture = mChannel;
-        }
-    }
-    catch( ... ) {
-        console() << "Unable to load the image." << std::endl;
-    }
-    
-    //mChannel = Channel32f( loadImage( loadUrl( url ) ) );
-    //mTexture = mChannel;
+    mChannel = Channel32f( loadImage( loadUrl( url ) ) );
+    mTexture = mChannel;
     
     mThingController = ThingController( RESOLUTION );
     //mThingController.addThings( 50 );
@@ -67,7 +62,7 @@ void FlockingBirdsApp::update()
 {
     if ( ! mChannel ) return;
     
-    mThingController.update( mChannel );
+    mThingController.update( mChannel, mMouseLoc );
 }
 
 void FlockingBirdsApp::draw()
@@ -97,11 +92,42 @@ void FlockingBirdsApp::keyDown( KeyEvent event )
 	} else if( event.getChar() == '2' ){
 		mDrawThings = ! mDrawThings;
 	}
+    else if( event.getChar() == ' ' )
+        {
+        try {
+            std::string p = getOpenFilePath( "", ImageIo::getLoadExtensions() ).string();
+            if( ! p.empty() ) { // an empty string means the user canceled
+                
+                mChannel = Channel32f( loadImage( p ) );
+                mTexture = mChannel;
+            }
+        }
+        catch( ... ) {
+            console() << "Unable to load the image." << std::endl;
+        }
+        }
 }
 
 void FlockingBirdsApp::mouseDown( MouseEvent event ) {
     
-   
+    mThingController.addVelocity();
+    
+}
+void FlockingBirdsApp::mouseUp( MouseEvent event ) {
+    
+    mThingController.removeVelocity();
+    
+}
+
+void FlockingBirdsApp::mouseMove( MouseEvent event ) {
+    
+    mMouseLoc = event.getPos();
+    
+}
+
+void FlockingBirdsApp::mouseDrag( MouseEvent event ) {
+    
+    mouseMove( event );
     
 }
 
