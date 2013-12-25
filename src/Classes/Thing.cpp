@@ -21,7 +21,10 @@ Thing::Thing( Vec2f loc )
     
     mLoc    = loc;
     mDir    = Rand::randVec2f();
-    //mVel    = Rand::randFloat();
+    //mDir.x = 1;
+    //mDir.y = 0;
+    mVel    = Rand::randFloat();
+    mVel    = 1.0f;
     mVel    = 0.0f;
     //mRadius = Rand::randInt( 3, 20 );
     mRadius = 4.0f;
@@ -34,7 +37,11 @@ Thing::Thing( Vec2f loc )
 
     
     //mOgon   = Rand::randInt( 10 );
-    mOgon   = 10;
+    mOgon   = 0;
+    mColor  = Color(Rand::randFloat(1),
+                    Rand::randFloat(1)
+                    ,Rand::randFloat(1));
+    //app::console() << "mColor ="<< mColor <<std::endl;
     
 }
 void Thing::update( const Channel32f &channel )
@@ -45,6 +52,8 @@ void Thing::update( const Channel32f &channel )
     mRadius = channel.getValue( mLoc ) * 7.0f;
     
     //mLoc += mDir * mVel;
+    
+    mLoc = mLoc + (mDir * mVel);
     //mLoc.x += cos( app::getElapsedSeconds() ) * 2.0f;
     //mRadius = abs( mLoc.y ) / ( abs( mLoc.x ) + 1 );
     
@@ -52,7 +61,8 @@ void Thing::update( const Channel32f &channel )
 
 void Thing::draw()
 {
-    //gl::color( mColor );
+
+    gl::color( mColor );
     gl::drawSolidCircle( mLoc , mRadius, mOgon);
 
     //gl::drawSolidCircle(mLoc, mRadius);

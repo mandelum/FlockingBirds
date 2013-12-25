@@ -37,10 +37,23 @@ void FlockingBirdsApp::prepareSettings(Settings *settings)
 
 void FlockingBirdsApp::setup()
 {
+    
 	Url url( "http://libcinder.org/media/tutorial/paris.jpg" );
     
-    mChannel = Channel32f( loadImage( loadUrl( url ) ) );
-    mTexture = mChannel;
+    try {
+        std::string p = getOpenFilePath( "", ImageIo::getLoadExtensions() ).string();
+        if( ! p.empty() ) { // an empty string means the user canceled
+            
+            mChannel = Channel32f( loadImage( p ) );
+            mTexture = mChannel;
+        }
+    }
+    catch( ... ) {
+        console() << "Unable to load the image." << std::endl;
+    }
+    
+    //mChannel = Channel32f( loadImage( loadUrl( url ) ) );
+    //mTexture = mChannel;
     
     mThingController = ThingController( RESOLUTION );
     //mThingController.addThings( 50 );
@@ -48,11 +61,6 @@ void FlockingBirdsApp::setup()
     mDrawThings = true;
     mDrawImage  = false;
 
-}
-
-void FlockingBirdsApp::mouseDown( MouseEvent event )
-{
-    
 }
 
 void FlockingBirdsApp::update()
@@ -89,6 +97,12 @@ void FlockingBirdsApp::keyDown( KeyEvent event )
 	} else if( event.getChar() == '2' ){
 		mDrawThings = ! mDrawThings;
 	}
+}
+
+void FlockingBirdsApp::mouseDown( MouseEvent event ) {
+    
+   
+    
 }
 
 CINDER_APP_NATIVE( FlockingBirdsApp, RendererGl )
