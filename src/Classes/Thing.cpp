@@ -67,14 +67,16 @@ void Thing::update( const Channel32f &channel, const Vec2i &mouseLoc)
 
 void Thing::draw()
 {
-    float arrowLength = 15.0f;
     gl::color( mColor );
-    gl::drawSolidCircle( mLoc , mRadius, mOgon);
-    gl::color( Color(0.0f,0.0f,0.0f));
+    //gl::drawSolidCircle( mLoc , mRadius, mOgon);
+    //gl::color( Color(1.0f,1.0f,1.0f));
+    
+    float arrowLength = mRadius;
     Vec3f p1( mLoc, 0.0f);
     Vec3f p2( mLoc + mDirToCursor * arrowLength,0.0f);
-    gl::drawVector(p1, p2);
-    
+    float headLength = 3.0f;
+    float headRadius = 3.0f;
+    gl::drawVector( p1, p2, headLength, mRadius/2 );
     
     //gl::drawSolidCircle(mLoc, mRadius);
     
@@ -84,6 +86,7 @@ void Thing::addVelocity()
 {
     mVel = 0.5f;
     mVel    = Rand::randFloat(2);
+    mDir = mDirToCursor;
 
 }
 void Thing::removeVelocity()
