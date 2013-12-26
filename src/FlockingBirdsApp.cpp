@@ -3,9 +3,11 @@
 #include "cinder/ImageIo.h"
 #include "cinder/gl/Texture.h"
 #include "ThingController.h"
+#include "cinder/qtime/MovieWriter.h"
+#include "cinder/Utilities.h"
 
 #define TOTAL_PARTICLES 4800
-#define RESOLUTION 10
+#define RESOLUTION 5
 
 using namespace ci;
 using namespace ci::app;
@@ -23,6 +25,7 @@ class FlockingBirdsApp : public AppNative {
     Vec2i mMouseLoc;
     
     void keyDown( KeyEvent event );
+    void keyUp( KeyEvent event);
 	void update();
 	void draw();
     Channel32f mChannel;
@@ -33,13 +36,16 @@ class FlockingBirdsApp : public AppNative {
     bool mDrawThings;
     bool mDrawImage;
     
+    qtime::MovieWriter mMovieWriter;
+    void initMovieWriter();
+    
     
 };
 
 void FlockingBirdsApp::prepareSettings(Settings *settings)
 {
     settings->setWindowSize( 800, 600 );
-    settings->setFrameRate( 60.0f );
+    settings->setFrameRate( 30.0f );
    }
 
 void FlockingBirdsApp::setup()
@@ -81,6 +87,18 @@ void FlockingBirdsApp::draw()
 
 		mThingController.draw();
 	}
+    
+    
+//    float radius = fabs(sinf(getElapsedSeconds() ) )
+//    *
+//    200.0f;
+//    Vec2f center = getWindowCenter();
+//    gl::color( Color(1.0f,1.0f,0.0f));
+//    gl::drawSolidCircle( center,  radius);
+    
+    if( mMovieWriter ){
+        mMovieWriter.addFrame( copyWindowSurface());
+    }
 	
  
 }
@@ -92,7 +110,21 @@ void FlockingBirdsApp::keyDown( KeyEvent event )
 	} else if( event.getChar() == '2' ){
 		mDrawThings = ! mDrawThings;
 	}
-    else if( event.getChar() == ' ' )
+    
+}
+
+void FlockingBirdsApp::keyUp( KeyEvent event)
+{
+    if ( event.getChar() == 'm') {
+        if (mMovieWriter) {
+            mMovieWriter = qtime::MovieWriter();
+        }
+        else {
+            initMovieWriter();
+        }
+    }
+    else
+        if( event.getChar() == 'o' )
         {
         try {
             std::string p = getOpenFilePath( "", ImageIo::getLoadExtensions() ).string();
@@ -129,6 +161,24 @@ void FlockingBirdsApp::mouseDrag( MouseEvent event ) {
     
     mouseMove( event );
     
+}
+
+void FlockingBirdsApp::initMovieWriter()
+{
+    fs::path path = getSaveFilePath();
+
+    if( path.empty() == false)
+      {
+        //console() << path;
+        qtime::MovieWriter::Format format;
+        format.setCodec( qtime::MovieWriter::CODEC_H264);
+      //format.setQuality(0.5f);
+      format.setDefaultDuration( 1.0f / 30.0f);
+        
+        mMovieWriter = qtime::MovieWriter( path, getWindowWidth(),getWindowHeight(), format );
+
+
+        }
 }
 
 CINDER_APP_NATIVE( FlockingBirdsApp, RendererGl )

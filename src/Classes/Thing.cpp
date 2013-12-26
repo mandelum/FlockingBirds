@@ -27,7 +27,7 @@ Thing::Thing( Vec2f loc )
     mVel    = 1.0f;
     mVel    = 0.0f;
     //mRadius = Rand::randInt( 3, 20 );
-    mRadius = 4.0f;
+    mRadius = 5.0f;
     //mRadius = Rand::randFloat( 1.0f, 5.0f );
     //mRadius = cos( mLoc.y * 0.1f ) + sin( mLoc.x * 0.1f ) + 2.0f;
     //mRadius = ( sin( mLoc.y * mLoc.x * 1000 ) + 1.0f ) * 2.0f;
@@ -48,18 +48,23 @@ Thing::Thing( Vec2f loc )
 void Thing::update( const Channel32f &channel, const Vec2i &mouseLoc)
 {
     //float time = app::getElapsedSeconds();
-    //float gray = channel.getValue( mLoc );
-    //mColor = Color( gray, gray, gray );
+   
     
     //mLoc += mDir * mVel;
     mDirToCursor = mouseLoc - mLoc;
     mDirToCursor.safeNormalize();
     
-    mRadius = channel.getValue( mLoc ) * mScale;
     
-
+    Vec2f newLoc = mLoc + mDirToCursor * 100.0f;
+    newLoc.x = constrain( newLoc.x, 0.0f, channel.getWidth() - 1.0f );
+    newLoc.y = constrain( newLoc.y, 0.0f, channel.getHeight() - 1.0f );
     
-    mLoc = mLoc + (mDir * mVel);
+    float gray = channel.getValue( newLoc );
+    mColor = Color( gray, gray, gray );
+    //mRadius = channel.getValue( newLoc ) * mScale;
+    
+    
+    //mLoc = mLoc + (mDir * mVel);
     //mLoc.x += cos( app::getElapsedSeconds() ) * 2.0f;
     //mRadius = abs( mLoc.y ) / ( abs( mLoc.x ) + 1 );
     
@@ -71,20 +76,22 @@ void Thing::draw()
     //gl::drawSolidCircle( mLoc , mRadius, mOgon);
     //gl::color( Color(1.0f,1.0f,1.0f));
     
-    float arrowLength = mRadius;
-    Vec3f p1( mLoc, 0.0f);
-    Vec3f p2( mLoc + mDirToCursor * arrowLength,0.0f);
-    float headLength = 3.0f;
-    float headRadius = 3.0f;
-    gl::drawVector( p1, p2, headLength, mRadius/2 );
+//    float arrowLength = mRadius;
+//    Vec3f p1( mLoc, 0.0f);
+//    Vec3f p2( mLoc + mDirToCursor * arrowLength,0.0f);
+//    float headLength = 3.0f;
+//    float headRadius = 3.0f;
+//    gl::drawVector( p1, p2, headLength, mRadius/2 );
     
     //gl::drawSolidCircle(mLoc, mRadius);
+    Rectf rect( mLoc.x, mLoc.y, mLoc.x + mRadius, mLoc.y + mRadius );
+    gl::drawSolidRect( rect );
     
 }
 
 void Thing::addVelocity()
 {
-    mVel = 0.5f;
+    mVel = mDirToCursor.length();
     mVel    = Rand::randFloat(2);
     mDir = mDirToCursor;
 

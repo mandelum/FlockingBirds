@@ -26,8 +26,8 @@ ThingController::ThingController( int res )
     
     for( int y=0; y<mYRes; y++ ) {
         for ( int x=0; x<mXRes; x++ ) {
-            float xi = ( x + 0.5f ) * 10.0f;
-            float yi = ( y + 0.5f ) * 10.0f;
+            float xi = ( x + 0.5f ) * (float)res;
+            float yi = ( y + 0.5f ) * (float)res;
             addThings( xi , yi );
         }
     }

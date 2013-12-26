@@ -18,6 +18,7 @@
 		6B44113631D5430D99DD2B94 /* FlockingBirdsApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BDFCE760144254A92FB98E /* FlockingBirdsApp.cpp */; };
 		8A691B36186765E8003A422A /* ThingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A691B34186765E8003A422A /* ThingController.cpp */; };
 		8A691B3918676850003A422A /* Thing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A691B3718676850003A422A /* Thing.cpp */; };
+		8ABC05B1186B933000BADF27 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABC05B0186B933000BADF27 /* QuickTime.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		8A691B35186765E8003A422A /* ThingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThingController.h; path = ../src/Classes/ThingController.h; sourceTree = "<group>"; };
 		8A691B3718676850003A422A /* Thing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Thing.cpp; path = ../src/Classes/Thing.cpp; sourceTree = "<group>"; };
 		8A691B3818676850003A422A /* Thing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thing.h; path = ../src/Classes/Thing.h; sourceTree = "<group>"; };
+		8ABC05B0186B933000BADF27 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		8D1107320486CEB800E47090 /* FlockingBirds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlockingBirds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEE73DC53BD4F35A15F56D2 /* FlockingBirds_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = FlockingBirds_Prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ABC05B1186B933000BADF27 /* QuickTime.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
 				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
@@ -148,6 +151,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8ABC05B0186B933000BADF27 /* QuickTime.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -181,6 +185,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FlockingBirds" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -277,8 +282,8 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CINDER_PATH = ../../../cinder_master;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -286,16 +291,18 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include \"$(CINDER_PATH)/blocks/QuickTime/include\" ../blocks/QuickTime/include";
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CINDER_PATH = ../../../cinder_master;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -303,8 +310,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include \"$(CINDER_PATH)/blocks/QuickTime/include\" ../blocks/QuickTime/include";
 			};
 			name = Release;
 		};
