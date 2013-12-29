@@ -50,19 +50,30 @@ void Thing::update( const Channel32f &channel, const Vec2i &mouseLoc)
     //float time = app::getElapsedSeconds();
    
     
-    //mLoc += mDir * mVel;
+    mLoc += mDir * mVel;
+    
     mDirToCursor = mouseLoc - mLoc;
-    mDirToCursor.safeNormalize();
+    float time = app::getElapsedSeconds() * 4.0f;
+    float dist = mDirToCursor.length() * 0.05f;
+    //float sinOffset = sin( dist - time ) * 100.0f;
+    float sinOffset = sin( dist - time );
+    mDirToCursor.normalize();
+    mDirToCursor *= sinOffset * 15.0f;
     
     
-    Vec2f newLoc = mLoc + mDirToCursor * 100.0f;
+    //Vec2f newLoc = mLoc + mDirToCursor * 100.0f;
+    Vec2f newLoc = mLoc + mDirToCursor * sinOffset;
+    //app::console() << sinOffset << endl;
     newLoc.x = constrain( newLoc.x, 0.0f, channel.getWidth() - 1.0f );
     newLoc.y = constrain( newLoc.y, 0.0f, channel.getHeight() - 1.0f );
+  
+    //mRadius = mRadiusScale;
     
-    float gray = channel.getValue( newLoc );
-    mColor = Color( gray, gray, gray );
+    
+    //float gray = channel.getValue( newLoc );
+    //mColor = Color( gray, gray, gray );
     //mRadius = channel.getValue( newLoc ) * mScale;
-    
+    mRadius = channel.getValue( mLoc ) * mScale;
     
     //mLoc = mLoc + (mDir * mVel);
     //mLoc.x += cos( app::getElapsedSeconds() ) * 2.0f;
@@ -84,8 +95,10 @@ void Thing::draw()
 //    gl::drawVector( p1, p2, headLength, mRadius/2 );
     
     //gl::drawSolidCircle(mLoc, mRadius);
-    Rectf rect( mLoc.x, mLoc.y, mLoc.x + mRadius, mLoc.y + mRadius );
-    gl::drawSolidRect( rect );
+    gl::drawSolidCircle(mLoc + mDirToCursor, mRadius);
+    
+//    Rectf rect( mLoc.x, mLoc.y, mLoc.x + mRadius, mLoc.y + mRadius );
+//    gl::drawSolidRect( rect );
     
 }
 
